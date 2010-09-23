@@ -1,6 +1,12 @@
 class UploadsController < ApplicationController
   before_filter :login_required, :only => [:new, :create, :delete ]
 
+  def file
+    @upload = Upload.find(params[:id])
+
+    redirect_to @upload.file.url
+  end
+
   # GET /uploads
   # GET /uploads.xml
   def index
@@ -23,17 +29,42 @@ class UploadsController < ApplicationController
     end
   end
 
+  # GET /uploads/1/edit
+  def edit
+    @upload = Upload.find(params[:id])
+  end
+
   # POST /uploads
   # POST /uploads.xml
   def create
     @upload = Upload.new(params[:upload])
 
+    flash[:notice]='Upload was successfully created.'
+
     respond_to do |format|
       if @upload.save
-        format.html { redirect_to(:controller=>"uploads", :notice => 'Upload was successfully created.') }
+        format.html { redirect_to(:controller=>"uploads") }
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
       else
         format.html { render :action => "new" }
+        format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /uploads/1
+  # PUT /uploads/1.xml
+  def update
+    @upload = Upload.find(params[:id])
+
+    flash[:notice]='Upload was successfully updated.'
+
+    respond_to do |format|
+      if @upload.update_attributes(params[:upload])
+        format.html { redirect_to(:controller=>"uploads") }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
         format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
       end
     end

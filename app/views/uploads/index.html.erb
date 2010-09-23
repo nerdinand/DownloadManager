@@ -11,7 +11,7 @@
 
 <% @uploads.each do |upload| %>
   <tr>
-    <td><%= link_to upload.file_file_name, upload.file.url %></td>
+    <td><%= link_to upload.file_file_name, file_path(upload) %></td>
     <td><%= upload.file_file_size %></td>
     <td><%= upload.description %></td>
     <td><%= link_to 'Edit', edit_upload_path(upload) %></td>
