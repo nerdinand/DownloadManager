@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100921212948) do
+ActiveRecord::Schema.define(:version => 20100923154126) do
 
   create_table "uploads", :force => true do |t|
     t.string   "file_file_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20100921212948) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sha1"
   end
 
 end
