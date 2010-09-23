@@ -1,6 +1,12 @@
 class UploadsController < ApplicationController
   before_filter :login_required, :only => [:new, :create, :delete ]
 
+  def file
+    @upload = Upload.find(params[:id])
+
+    redirect_to @upload.file.url
+  end
+
   # GET /uploads
   # GET /uploads.xml
   def index
