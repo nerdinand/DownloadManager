@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100923154126) do
+ActiveRecord::Schema.define(:version => 20100923163532) do
+
+  create_table "folders", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "uploads", :force => true do |t|
     t.string   "file_file_name"
@@ -19,7 +26,7 @@ ActiveRecord::Schema.define(:version => 20100923154126) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "sha1"
+    t.integer  "folder_id"
   end
 
 end
