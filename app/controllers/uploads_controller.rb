@@ -23,11 +23,6 @@ class UploadsController < ApplicationController
     end
   end
 
-  # GET /uploads/1/edit
-  def edit
-    @upload = Upload.find(params[:id])
-  end
-
   # POST /uploads
   # POST /uploads.xml
   def create
@@ -35,26 +30,10 @@ class UploadsController < ApplicationController
 
     respond_to do |format|
       if @upload.save
-        format.html { redirect_to(@upload, :notice => 'Upload was successfully created.') }
+        format.html { redirect_to(:controller=>"uploads", :notice => 'Upload was successfully created.') }
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /uploads/1
-  # PUT /uploads/1.xml
-  def update
-    @upload = Upload.find(params[:id])
-
-    respond_to do |format|
-      if @upload.update_attributes(params[:upload])
-        format.html { redirect_to(@upload, :notice => 'Upload was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
       end
     end
