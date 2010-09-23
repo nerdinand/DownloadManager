@@ -8,9 +8,13 @@
 </head>
 <body>
 
-  <p class="bookmarks">
-    <%= link_to "logout", :controller=>"users", :action=>"logout" %>
-  </p>
+  <h1>Der neue schicke DownloadManager</h1>
+  <p style="text-align: right;">(in Ruby/Rails geschrieben, was dem Steven missfällt.)</p>
+
+  <ul class="navigation">
+    <li><%= link_to "downloads", :controller => "uploads", :action => "index" %></li>
+    <li><%= link_to "logout", :controller=>"users", :action=>"logout" %></li>
+  </ul>
 
   <% if flash[:error] %>
     <p id="alert"><%= flash[:error] %></p>

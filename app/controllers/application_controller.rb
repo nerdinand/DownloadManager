@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
       session[:return_to]=nil
       redirect_to(return_to)
     else
-      redirect_to :controller=>'user', :action=>'welcome'
+      redirect_to :controller=>'uploads', :action=>'index'
     end
   end
 end
