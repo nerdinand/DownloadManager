@@ -1,15 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @folder.name %>
+  <b><%= @folder.name %></b> owned by <%= @folder.user_id %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @folder.user_id %>
-</p>
+<ul>
+<% @folder.uploads.each do |upload| %>
+  <li><%= link_to upload.file_file_name, file_path(upload) %></li>
+<% end %>
+</ul>
 
-
-<%= link_to 'Edit', edit_folder_path(@folder) %> |
-<%= link_to 'Back', folders_path %>
+<%= link_to 'Edit folder', edit_folder_path(@folder) %>
