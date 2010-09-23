@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if request.post?
       session[:user] = User.authenticate(params[:user][:login], params[:user][:password])
       if session[:user]
-        flash[:message]  = "Login successful"
+        flash[:notice]  = "Login successful"
         redirect_to_stored
       else
         flash[:warning] = "Login unsuccessful"
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def logout
     session[:user]=nil
-    flash[:message]  = "Logout successful"
+    flash[:notice]  = "Logout successful"
     redirect_to_stored
   end
 end
