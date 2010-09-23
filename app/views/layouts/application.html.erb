@@ -28,6 +28,8 @@
     <p id="alert"><%= flash[:alert] %></p>
   <%  end %>
 
+  <%= render :partial => "layouts/folders", :locals => {:folders => all_folders} %>
+
 <%= yield %>
 
 </body>

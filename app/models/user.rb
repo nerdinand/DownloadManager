@@ -6,6 +6,8 @@ class UserModelBase < ActiveRecord::Base
 end
 
 class User < UserModelBase
+  has_many :folders
+
   def self.authenticate(login, pass)
     u=find(:first, :conditions=>["login = ?", login])
     return nil if u.nil?

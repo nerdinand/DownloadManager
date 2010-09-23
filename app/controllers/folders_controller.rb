@@ -1,4 +1,6 @@
 class FoldersController < ApplicationController
+    before_filter :login_required, :only => [:new, :create, :delete ]
+
   # GET /folders
   # GET /folders.xml
   def index
@@ -25,6 +27,7 @@ class FoldersController < ApplicationController
   # GET /folders/new.xml
   def new
     @folder = Folder.new
+    @folder.user = current_user
 
     respond_to do |format|
       format.html # new.html.erb

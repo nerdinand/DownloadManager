@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
       redirect_to :controller=>'uploads', :action=>'index'
     end
   end
+
 end
