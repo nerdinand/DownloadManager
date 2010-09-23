@@ -13,6 +13,7 @@
 
   <ul class="navigation">
     <li><%= link_to "downloads", :controller => "uploads", :action => "index" %></li>
+    <li><%= link_to "new upload", :controller => "uploads", :action => "new" %> </li>
     <li><%= link_to "logout", :controller=>"users", :action=>"logout" %></li>
   </ul>
 
@@ -30,7 +31,8 @@
 
   <%= render :partial => "layouts/folders", :locals => {:folders => all_folders} %>
 
-<%= yield %>
+
+    <div class="content"><%= yield %></div>
 
 </body>
 </html>

@@ -1,4 +1,8 @@
-body { background-color: #fff; color: #333; }
+html, body { 
+    background-color: #fff; color: #333;
+    height: 100%;
+    margin: 0px;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -68,4 +72,23 @@ ul.navigation li {
     font-size: 16px;
     border-left: 1px black solid;
     border-right: 1px black solid;
+}
+
+ul.folders {
+    border: 1px black solid;
+    width: 10%;
+    float: left;
+    min-height: 200px;
+}
+
+ul.folders li {
+    display: block;
+    padding: 5px;
+}
+
+div.content {
+    margin-top: 30px;
+    margin-left: 15%;
+    margin-right: 10%;
+    border: 1px black solid;
 }

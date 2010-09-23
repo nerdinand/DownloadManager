@@ -3,12 +3,9 @@
 # and open the template in the editor.
 %>
 
-<strong>Folders</strong>
-
-<% folders.each do |folder| %>
-
-<ul>
-  <li><%= link_to folder.name, folder %></li>
+<ul class="folders">
+  <% folders.each do |folder| %>
+    <li><%= image_tag "dir.png" %>  <%= link_to folder.name, folder %></li>
+  <% end %>
+    <li><%= link_to "new folder", :controller => "folders", :action => "new" %></li>
 </ul>
-
-<% end %>

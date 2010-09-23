@@ -4,4 +4,8 @@ module ApplicationHelper
     Folder.all
   end
 
+  def all_folders_array
+    Folder.all.map { |folder| [folder.name, folder.id] }
+  end
+
 end
