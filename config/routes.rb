@@ -6,7 +6,7 @@ DownloadManager::Application.routes.draw do
   match 'users/login'=>'users#login'
   match 'users/logout'=>'users#logout'
 
-  match 'uploads/:id/file'=>'uploads#file'
+  match 'uploads/:id/file'=>'uploads#file', :as => :file
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
