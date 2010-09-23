@@ -24,10 +24,7 @@ production:
 
 #configuration for external redmine
 redmine:
-  adapter: mysql
-  host: localhost
-  database: redmine
-  #username: redmine
-  username: root
-  #password: fGH45wRt
-  password: 
+  adapter: sqlite3
+  database: db/users.sqlite3
+  pool: 5
+  timeout: 5000

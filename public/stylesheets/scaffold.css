@@ -54,3 +54,18 @@ div.field, div.actions {
   font-size: 12px;
   list-style: square;
 }
+
+ul.navigation {
+    background-color: #cccccc;
+}
+
+ul.navigation li {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+}
