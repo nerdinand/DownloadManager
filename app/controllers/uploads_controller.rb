@@ -33,9 +33,11 @@ class UploadsController < ApplicationController
   def create
     @upload = Upload.new(params[:upload])
 
+    flash[:notice]='Upload was successfully created.'
+
     respond_to do |format|
       if @upload.save
-        format.html { redirect_to(:controller=>"uploads", :notice => 'Upload was successfully created.') }
+        format.html { redirect_to(:controller=>"uploads") }
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
       else
         format.html { render :action => "new" }
@@ -49,9 +51,11 @@ class UploadsController < ApplicationController
   def update
     @upload = Upload.find(params[:id])
 
+    flash[:notice]='Upload was successfully updated.'
+
     respond_to do |format|
       if @upload.update_attributes(params[:upload])
-        format.html { redirect_to(@upload, :notice => 'Upload was successfully updated.') }
+        format.html { redirect_to(:controller=>"uploads") }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
