@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DownloadManager</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+  <p class="bookmarks">
+    <%= link_to "logout", :controller=>"users", :action=>"logout" %>
+  </p>
+
+  <% if flash[:error] %>
+    <p id="alert"><%= flash[:error] %></p>
+  <%  end %>
+
+  <% if flash[:notice] %>
+    <p id="notice"><%= flash[:notice] %> </p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p id="alert"><%= flash[:alert] %></p>
+  <%  end %>
+
+<%= yield %>
+
+</body>
+</html>
