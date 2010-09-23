@@ -1,4 +1,6 @@
 DownloadManager::Application.routes.draw do
+  resources :folders
+
   resources :uploads
   
   match 'users/login'=>'users#login'
