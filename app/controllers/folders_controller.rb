@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-    before_filter :login_required, :only => [:new, :create, :delete ]
+  before_filter :login_required, :only => [:new, :create, :delete, :edit, :update ]
 
   # GET /folders
   # GET /folders.xml
@@ -16,9 +16,6 @@ class FoldersController < ApplicationController
   # GET /folders/1.xml
   def show
     @folder = Folder.find(params[:id])
-    @owner = User.find_by_id(@folder.user_id).login if @folder.user_id
-    @owner = "{unknown}" unless @owner
-    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,8 +27,7 @@ class FoldersController < ApplicationController
   # GET /folders/new.xml
   def new
     @folder = Folder.new
-    @folder.user = current_user
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @folder }
@@ -47,6 +43,8 @@ class FoldersController < ApplicationController
   # POST /folders.xml
   def create
     @folder = Folder.new(params[:folder])
+
+    @folder.user = current_user
 
     respond_to do |format|
       if @folder.save

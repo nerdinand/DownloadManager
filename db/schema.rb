@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20100923163532) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sha1"
     t.integer  "folder_id"
   end
 
