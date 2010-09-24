@@ -1,5 +1,5 @@
 class FoldersController < ApplicationController
-  before_filter :login_required, :only => [:new, :create, :delete, :edit, :update ]
+  before_filter :login_required, :only => [:new, :create, :destroy, :edit, :update ]
 
   # GET /folders
   # GET /folders.xml

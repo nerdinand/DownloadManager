@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_filter :login_required, :only => [:new, :create, :delete ]
+  before_filter :login_required, :only => [:new, :create, :destroy, :edit, :update ]
 
   def file
     @upload = Upload.find(params[:id])
@@ -77,7 +77,7 @@ class UploadsController < ApplicationController
     @upload.destroy
 
     respond_to do |format|
-      format.html { redirect_to(uploads_url) }
+      format.html { redirect_to(:controller=>"uploads") }
       format.xml  { head :ok }
     end
   end

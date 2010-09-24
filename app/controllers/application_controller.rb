@@ -6,7 +6,12 @@ class ApplicationController < ActionController::Base
       return true
     end
     flash[:warning]='Please login to continue'
-    session[:return_to]=request.fullpath
+
+    if request.method.eql? :get
+      session[:return_to]=request.fullpath
+      #puts ">>>>>>>> redirect saved: #{session[:return_to]}"
+    end
+    
     redirect_to :controller => "users", :action => "login"
     return false
   end
@@ -18,6 +23,7 @@ class ApplicationController < ActionController::Base
   def redirect_to_stored
     if return_to = session[:return_to]
       session[:return_to]=nil
+      #puts ">>>>>>>> redirecting to #{return_to}"
       redirect_to(return_to)
     else
       redirect_to :controller=>'uploads', :action=>'index'
