@@ -16,6 +16,9 @@ class FoldersController < ApplicationController
   # GET /folders/1.xml
   def show
     @folder = Folder.find(params[:id])
+    @owner = User.find_by_id(@folder.user_id).login if @folder.user_id
+    @owner = "{unknown}" unless @owner
+    
 
     respond_to do |format|
       format.html # show.html.erb

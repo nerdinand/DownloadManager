@@ -5,4 +5,5 @@ class Upload < ActiveRecord::Base
 
   belongs_to :folder
 
+
 end

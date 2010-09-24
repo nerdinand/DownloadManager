@@ -13,7 +13,7 @@
 <% @uploads.each do |upload| %>
   <tr>
     <td><%= link_to upload.file_file_name, file_path(upload) %></td>
-    <td><%= upload.file_file_size %></td>
+    <td><%= number_to_human_size(upload.file_file_size) %></td>
     <td><%= upload.description %></td>
     <% if upload.folder_id.nil? %>
       <td><%= render :partial => "uploads/move", :locals => {:upload => upload}%> </td>
