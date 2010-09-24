@@ -6,7 +6,10 @@
 
 <ul>
 <% @folder.uploads.each do |upload| %>
-  <li><%= link_to upload.file_file_name, file_path(upload) %></li>
+  <li>
+    <%= link_to upload.file_file_name, file_path(upload) %>
+    <%= render :partial => "layouts/move", :locals => {:upload => upload}%>
+  </li>
 <% end %>
 </ul>
 
