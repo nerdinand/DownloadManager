@@ -6,8 +6,13 @@
 
 <ul>
 <% @folder.uploads.each do |upload| %>
-  <li><%= link_to upload.file_file_name, file_path(upload) %></li>
+  <li>
+    <%= link_to upload.file_file_name, file_path(upload) %>
+    <%= render :partial => "layouts/move", :locals => {:upload => upload}%>
+  </li>
 <% end %>
 </ul>
 
-<%= link_to 'Edit folder', edit_folder_path(@folder) %>
+<%= link_to 'Edit folder', edit_folder_path(@folder) %> |
+<%= link_to 'Delete folder', @folder, :confirm => 'Are you sure?', :method => :delete %>
+
