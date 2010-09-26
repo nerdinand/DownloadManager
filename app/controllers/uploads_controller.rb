@@ -1,10 +1,28 @@
 class UploadsController < ApplicationController
-  before_filter :login_required, :only => [:new, :create, :destroy, :edit, :update ]
+  before_filter :login_required, :except => [:file, :index]
 
   def file
     @upload = Upload.find(params[:id])
 
-    redirect_to @upload.file.url
+    unless @upload.locked?
+      send_file @upload.file.path, :type => @upload.file_content_type, :disposition => 'inline'
+    else
+      flash[:error]="This file is locked."
+
+      redirect_to(:controller=>"uploads")
+    end
+  end
+
+  def lock
+    set_locked(params[:id], true)
+
+    redirect_to(:controller=>"uploads")
+  end
+
+  def unlock
+    set_locked(params[:id], false)
+
+    redirect_to(:controller=>"uploads")
   end
 
   # GET /uploads
@@ -80,6 +98,14 @@ class UploadsController < ApplicationController
       format.html { redirect_to(:controller=>"uploads") }
       format.xml  { head :ok }
     end
+  end
+
+  private
+
+  def set_locked(upload_id, locked)
+    @upload = Upload.find(upload_id)
+    @upload.locked=locked
+    @upload.save!
   end
 
 end

@@ -1,12 +1,24 @@
 DownloadManager::Application.routes.draw do
   resources :folders
 
-  resources :uploads
+  resources :uploads do
+    member do
+      post 'lock'
+    end
+
+    member do
+      post 'unlock'
+    end
+
+    member do
+      get 'file'
+    end
+  end
   
   match 'users/login'=>'users#login'
   match 'users/logout'=>'users#logout'
 
-  match 'uploads/:id/file'=>'uploads#file', :as => :file
+  #rmatch 'uploads/:id/file'=>'uploads#file', :as => :file
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
