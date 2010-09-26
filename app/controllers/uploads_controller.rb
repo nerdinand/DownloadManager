@@ -6,6 +6,8 @@ class UploadsController < ApplicationController
 
     unless @upload.locked?
       send_file @upload.file.path, :type => @upload.file_content_type, :disposition => 'inline'
+      @upload.download_count+=1
+      @upload.save!
     else
       flash[:error]="This file is locked."
 

@@ -4,6 +4,7 @@
   <tr>
     <th>file name</th>
     <th>file size</th>
+    <th>download count</th>
     <th>description</th>
     <th>parent (folder)</th>
     <th></th>
@@ -15,6 +16,7 @@
   <tr>
     <td><%= link_to upload.file_file_name, file_upload_path(upload) %></td>
     <td><%= number_to_human_size(upload.file_file_size) %></td>
+    <td><%= upload.download_count %></td>
     <td><%= upload.description %></td>
     <td><%= render :partial => "layouts/move", :locals => {:upload => upload}%> </td>
 
