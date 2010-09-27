@@ -1,0 +1,22 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<% current_folder_id = params[:id].to_i %>
+
+<% folders.each do |folder| %>
+    <li>
+      <%= image_tag "dir.png" %>
+      <% if folder.id == current_folder_id %>
+        <%= link_to folder.name, folder, :class => "current_folder" %>
+      <% else %>
+        <%= link_to folder.name, folder %>
+      <% end %>
+    </li>
+    <ul>
+      <% if folder.folders %>
+      <%= render :partial => "layouts/folder_recursive", :locals => {:folders => folder.folders}  %>
+      <% end %>
+    </ul>
+<% end %>

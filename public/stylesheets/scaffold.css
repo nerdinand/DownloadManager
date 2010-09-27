@@ -60,7 +60,9 @@ div.field, div.actions {
 }
 
 ul.navigation {
-    background-color: #cccccc;
+    background-color: #b1c4a6;
+    padding-top: 5px;
+    padding-bottom: 4px;
 }
 
 ul.navigation li {
@@ -70,8 +72,20 @@ ul.navigation li {
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 16px;
-    border-left: 1px black solid;
-    border-right: 1px black solid;
+    border-left: 5px #375D3B solid;
+}
+
+ul.navigation li a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+ul.navigation li a:hover {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #7D8A75;
 }
 
 ul.folders {
@@ -80,11 +94,16 @@ ul.folders {
     float: left;
     min-height: 200px;
     padding-left: 10px;
+    background-color: #E8E6ED;
 }
 
 ul.folders li {
     display: block;
     padding: 5px;
+}
+
+ul.folders li a {
+    text-decoration: none;
 }
 
 div.content {
@@ -96,4 +115,5 @@ div.content {
 
 a.current_folder {
     font-weight: bold;
+    color: #3E3D40;
 }
