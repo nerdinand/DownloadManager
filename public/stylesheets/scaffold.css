@@ -76,9 +76,10 @@ ul.navigation li {
 
 ul.folders {
     border: 1px black solid;
-    width: 10%;
+    width: 15%;
     float: left;
     min-height: 200px;
+    padding-left: 10px;
 }
 
 ul.folders li {
@@ -88,7 +89,11 @@ ul.folders li {
 
 div.content {
     margin-top: 30px;
-    margin-left: 15%;
+    margin-left: 20%;
     margin-right: 10%;
     border: 1px black solid;
+}
+
+a.current_folder {
+    font-weight: bold;
 }

@@ -3,9 +3,30 @@
 # and open the template in the editor.
 %>
 
+<% current_folder_id = params[:id].to_i %>
+
 <ul class="folders">
   <% folders.each do |folder| %>
-    <li><%= image_tag "dir.png" %>  <%= link_to folder.name, folder %></li>
+    <li>
+      <%= image_tag "dir.png" %>
+      <% if folder.id == current_folder_id %>
+        <%= link_to folder.name, folder, :class => "current_folder" %>
+      <% else %>
+        <%= link_to folder.name, folder %>
+      <% end %>
+    </li>
+    <ul>
+      <% folder.folders.each do |subfolder| %>
+      <li>
+        <%= image_tag "dir.png" %>
+        <% if subfolder.id == current_folder_id %>
+          <%= link_to subfolder.name, subfolder, :class => "current_folder" %>
+        <% else %>
+          <%= link_to subfolder.name, subfolder %>
+      <% end %>
+      </li>
+      <% end %>
+    </ul>
   <% end %>
     <li><%= link_to "new folder", :controller => "folders", :action => "new" %></li>
 

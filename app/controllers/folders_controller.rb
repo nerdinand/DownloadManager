@@ -27,8 +27,6 @@ class FoldersController < ApplicationController
   # GET /folders/new.xml
   def new
     @folder = Folder.new
-    @folder.folder = Folder.find params[:folder_id]
-
     @parent_id = params[:folder_id].to_i
     
     respond_to do |format|
@@ -49,7 +47,9 @@ class FoldersController < ApplicationController
 
     @folder.user = current_user
 
-    @folder.folder = Folder.find params[:folder][:folder_id]
+    if params[:folder][:folder_id] == "0"
+      @folder.folder = nil
+    end    
 
     respond_to do |format|
       if @folder.save
