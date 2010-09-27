@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100926191525) do
+ActiveRecord::Schema.define(:version => 20100927110311) do
 
   create_table "folders", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "folder_id"
   end
 
   create_table "uploads", :force => true do |t|
