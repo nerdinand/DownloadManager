@@ -8,4 +8,8 @@ module ApplicationHelper
     Folder.all.map { |folder| [folder.name, folder.id] }
   end
 
+  def current_user
+    session[:user]
+  end
+
 end

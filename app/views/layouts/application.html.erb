@@ -14,7 +14,11 @@
     <li><%= link_to "guest link", guest_upload_uploads_path %></li>
     <li><%= link_to "uploads", uploads_path %></li>
     <li><%= link_to "new upload", new_upload_path %> </li>
-    <li><%= link_to "logout", users_logout_path %></li>
+    <% if current_user %>
+      <li><%= link_to "logout", users_logout_path %></li>
+    <% else %>
+      <li><%= link_to "login", users_login_path %></li>
+    <% end %>
   </ul>
 
   <% if flash[:error] %>

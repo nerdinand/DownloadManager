@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
     return false
   end
 
-  def current_user
-    session[:user]
-  end
-
   def redirect_to_stored
     if return_to = session[:return_to]
       session[:return_to]=nil
