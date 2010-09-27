@@ -93,13 +93,18 @@ ul.folders {
     width: 15%;
     float: left;
     min-height: 200px;
-    padding-left: 10px;
+    padding-left: 15px;
+    padding-top: 15px;
     background-color: #E8E6ED;
+}
+
+ul.folders ul {
+    padding: 5px 20px;
 }
 
 ul.folders li {
     display: block;
-    padding: 5px;
+/*    padding: 5px 3px;*/
 }
 
 ul.folders li a {
