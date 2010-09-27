@@ -5,4 +5,4 @@ tmp/**/*
 /nbproject/
 *.DS_Store
 public/system/files
-uploads/
+/uploads/
