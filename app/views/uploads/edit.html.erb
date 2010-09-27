@@ -1,6 +1,6 @@
 <h1>Editing upload</h1>
 
-<%= form_for(@upload) do |f| %>
+<%= form_for(@upload,  :html => { :multipart => true }) do |f| %>
   <% if @upload.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@upload.errors.count, "error") %> prohibited this upload from being saved:</h2>
@@ -12,6 +12,10 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= f.file_field :file%>
+  </div>
 
   <div class="field">
     <%= f.label :description %><br />

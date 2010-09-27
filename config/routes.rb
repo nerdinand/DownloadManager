@@ -1,20 +1,21 @@
 DownloadManager::Application.routes.draw do
   resources :folders
 
+  match 'uploads/:guest_token' => 'uploads#edit', :as=>:guest_upload, :constraints => {:guest_token => /([a-z0-9]*-){4}[a-z0-9]*/}
+
   resources :uploads do
-    member do #uploads/:id/lock
-      post 'lock'
+    member do 
+      post 'lock' #uploads/:id/lock
+      post 'unlock' #uploads/:id/unlock
+      get 'file' #uploads/:id/file
     end
 
-    member do #uploads/:id/unlock
-      post 'unlock'
+    collection do #uploads/guest_upload
+      get 'guest_upload'
     end
 
-    member do #uploads/:id/file
-      get 'file'
-    end
   end
-  
+
   match 'users/login'=>'users#login'
   match 'users/logout'=>'users#logout'
 

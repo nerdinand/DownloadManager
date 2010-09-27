@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100926191525) do
+ActiveRecord::Schema.define(:version => 20100927101519) do
 
   create_table "folders", :force => true do |t|
     t.string   "name"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20100926191525) do
     t.integer  "folder_id"
     t.boolean  "locked"
     t.integer  "download_count"
+    t.string   "guest_token"
   end
 
 end
