@@ -14,5 +14,6 @@
 </ul>
 
 <%= link_to 'Edit folder', edit_folder_path(@folder) %> |
-<%= link_to 'Delete folder', @folder, :confirm => 'Are you sure?', :method => :delete %>
+<%= link_to 'Delete folder', @folder, :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to "New subfolder", new_folder_folder_path(@folder) %>
 

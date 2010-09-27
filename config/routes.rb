@@ -1,5 +1,7 @@
 DownloadManager::Application.routes.draw do
-  resources :folders
+  resources :folders do
+    resources :folders
+  end
 
   resources :uploads do
     member do #uploads/:id/lock

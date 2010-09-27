@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def all_folders
-    Folder.all
+    Folder.where({:folder_id => nil})
   end
 
   def all_folders_array
