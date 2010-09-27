@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_filter :login_required, :except => [:file, :index]
+  before_filter :login_required, :except => [:file, :index, :show, :edit, :update]
 
   def file
     @upload = Upload.find(params[:id])
@@ -27,6 +27,14 @@ class UploadsController < ApplicationController
     redirect_to(:controller=>"uploads")
   end
 
+  def guest_upload
+    @upload=Upload.new
+    @upload.download_count=0
+    @upload.guest_token=Upload.unique_id
+    @upload.description="Guest upload: "+@upload.guest_token
+    @upload.save!
+  end
+
   # GET /uploads
   # GET /uploads.xml
   def index
@@ -51,14 +59,25 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1/edit
   def edit
-    @upload = Upload.find(params[:id])
+    if params[:id]
+      login_required
+      @upload=Upload.find(params[:id])
+    else
+      @upload=Upload.find_by_guest_token(params[:guest_token])
+
+      if @upload.file.exists?
+        flash[:error]='File was already uploaded.'
+        redirect_to :controller=>"uploads"
+      end
+    end
   end
 
   # POST /uploads
   # POST /uploads.xml
   def create
     @upload = Upload.new(params[:upload])
-
+    @upload.download_count=0
+    
     flash[:notice]='Upload was successfully created.'
 
     respond_to do |format|
