@@ -9,6 +9,12 @@
   
   <%= render :partial => "layouts/folder_recursive",
     :locals => {:folders => folders}  %>
-  <li><%= link_to "new folder", :controller => "folders", :action => "new" %></li>
+
+  <hr />
+
+  <li>
+    <%= image_tag "folder-new.png" %>
+    <%= link_to "new folder", :controller => "folders", :action => "new" %>
+  </li>
 
 </ul>
