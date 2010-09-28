@@ -7,11 +7,17 @@ class Upload < ActiveRecord::Base
   #validates_attachment_presence :file
 
   validates :download_count, :presence=>true
-
+  validates :user, :presence=>true
+  
   belongs_to :folder
+  belongs_to :user
 
   def self.unique_id
     UUID.new.generate
+  end
+
+  def guest_upload?
+    !guest_token.nil?
   end
   
 end
