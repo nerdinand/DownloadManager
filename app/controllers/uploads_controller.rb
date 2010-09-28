@@ -111,7 +111,7 @@ class UploadsController < ApplicationController
 
     respond_to do |format|
       if @upload.update_attributes(params[:upload])
-        format.html { redirect_to(:controller=>"uploads") }
+        format.html { redirect_to(@upload.folder) }
         format.xml  { head :ok }
         format.json  { head :ok }
       else
