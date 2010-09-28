@@ -7,7 +7,6 @@
     <th>owner</th>
     <th>download count</th>
     <th>description</th>
-    <th>parent (folder)</th>
     <th></th>
     <th></th>
     <th></th>
@@ -26,7 +25,6 @@
     <td><%= upload.user.login %></td>
     <td><%= upload.download_count %></td>
     <td><%= upload.description %></td>
-    <td><%= render :partial => "layouts/move", :locals => {:upload => upload}%> </td>
 
     <% if upload.locked? %>
       <td><%= link_to 'Unlock', unlock_upload_path(upload), :method=>:post %></td>
