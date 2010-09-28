@@ -88,10 +88,9 @@ class UploadsController < ApplicationController
     @upload.download_count=0
     @upload.user=current_user
     
-    flash[:notice]='Upload was successfully created.'
-
     respond_to do |format|
       if @upload.save
+        flash[:notice]='Upload was successfully created.'
         format.html { redirect_to(:controller=>"uploads") }
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
         format.json  { render :json => @upload, :status => :created, :location => @upload }
