@@ -44,6 +44,7 @@ class UploadsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @uploads }
+      format.json { render :json => @uploads }
     end
   end
 
@@ -55,6 +56,7 @@ class UploadsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @upload }
+      format.json { render :json => @upload }
     end
   end
 
@@ -71,6 +73,12 @@ class UploadsController < ApplicationController
         redirect_to :controller=>"uploads"
       end
     end
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @upload }
+      format.json { render :json => @upload }
+    end
   end
 
   # POST /uploads
@@ -86,9 +94,11 @@ class UploadsController < ApplicationController
       if @upload.save
         format.html { redirect_to(:controller=>"uploads") }
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
+        format.json  { render :json => @upload, :status => :created, :location => @upload }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @upload.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -104,9 +114,11 @@ class UploadsController < ApplicationController
       if @upload.update_attributes(params[:upload])
         format.html { redirect_to(:controller=>"uploads") }
         format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @upload.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @upload.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -120,6 +132,7 @@ class UploadsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(:controller=>"uploads") }
       format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 

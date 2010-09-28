@@ -9,6 +9,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @folders }
+      format.json  { render :json => @folders }
     end
   end
 
@@ -20,6 +21,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @folder }
+      format.json  { render :json => @folder }
     end
   end
 
@@ -32,6 +34,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @folder }
+      format.json  { render :json => @folder }
     end
   end
 
@@ -55,9 +58,11 @@ class FoldersController < ApplicationController
       if @folder.save
         format.html { redirect_to(@folder, :notice => 'Folder was successfully created.') }
         format.xml  { render :xml => @folder, :status => :created, :location => @folder }
+        format.json  { render :json => @folder, :status => :created, :location => @folder }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @folder.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @folder.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -71,9 +76,11 @@ class FoldersController < ApplicationController
       if @folder.update_attributes(params[:folder])
         format.html { redirect_to(@folder, :notice => 'Folder was successfully updated.') }
         format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @folder.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @folder.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -87,6 +94,7 @@ class FoldersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(folders_url) }
       format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 end
