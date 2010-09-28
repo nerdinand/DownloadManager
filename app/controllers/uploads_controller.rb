@@ -32,6 +32,7 @@ class UploadsController < ApplicationController
     @upload.download_count=0
     @upload.guest_token=Upload.unique_id
     @upload.description="Guest upload: "+@upload.guest_token
+    @upload.user=current_user
     @upload.save!
   end
 
@@ -77,6 +78,7 @@ class UploadsController < ApplicationController
   def create
     @upload = Upload.new(params[:upload])
     @upload.download_count=0
+    @upload.user=current_user
     
     flash[:notice]='Upload was successfully created.'
 
