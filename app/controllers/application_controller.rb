@@ -6,11 +6,14 @@ class ApplicationController < ActionController::Base
     puts params.inspect
 
     if params["format"].eql? "json"
-#      if user = authenticate_with_http_basic { |u, p| @account.users.authenticate(u, p) }
- #       session[:user] = user
-  #    else
-        #request_http_basic_authentication
-   #   end
+      user = authenticate_with_http_basic { |u, p|
+        User.authenticate(u, p)
+      }
+      if user
+        session[:user] = user
+      else
+        request_http_basic_authentication
+      end
     else
       if session[:user]
         return true
