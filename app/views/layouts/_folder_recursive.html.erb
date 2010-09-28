@@ -13,10 +13,11 @@
       <% else %>
         <%= link_to folder.name, folder %>
       <% end %>
-    </li>
-    <ul>
       <% if folder.folders %>
-      <%= render :partial => "layouts/folder_recursive", :locals => {:folders => folder.folders}  %>
+      <ul>
+        <%= render :partial => "layouts/folder_recursive", :locals => {:folders => folder.folders}  %>
+      </ul>
       <% end %>
-    </ul>
+    </li>
+    
 <% end %>
