@@ -9,6 +9,7 @@
   <li>
     <%= link_to upload.file_file_name, file_upload_path(upload) %>
     <%= render :partial => "layouts/move", :locals => {:upload => upload}%>
+    <%= "(" + upload.user.login + ")" %>
   </li>
 <% end %>
 </ul>
