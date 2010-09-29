@@ -2,6 +2,8 @@ require 'rubygems'
 require 'uuid'
 
 class Upload < ActiveRecord::Base
+  attr_accessor :upload_type
+
   # Paperclip
   has_attached_file :file, :path => ":rails_root/uploads/:class/:id/:basename.:extension"
   #validates_attachment_presence :file
@@ -18,6 +20,10 @@ class Upload < ActiveRecord::Base
 
   def guest_upload?
     !guest_token.nil?
+  end
+
+  def guest_link
+    
   end
   
 end

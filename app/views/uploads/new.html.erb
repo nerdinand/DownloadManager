@@ -1,6 +1,7 @@
 <h1>New upload</h1>
 
 <%= form_for(@upload, :html => { :multipart => true }) do |f| %>
+  
   <% if @upload.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@upload.errors.count, "error") %> prohibited this upload from being saved:</h2>
@@ -12,6 +13,13 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <p>
+      <%= f.radio_button(:upload_type, :normal) %> normal
+      <%= f.radio_button(:upload_type, :guest) %> guest
+    </p>
+  </div>
 
   <div class="field">
     <%= f.file_field :file%>

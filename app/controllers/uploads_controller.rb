@@ -1,5 +1,5 @@
 class UploadsController < ApplicationController
-  before_filter :login_required, :except => [:file, :index, :show, :edit, :update]
+  before_filter :login_required, :except => [:file, :index, :edit, :update]
 
   def file
     @upload = Upload.find(params[:id])
@@ -30,8 +30,7 @@ class UploadsController < ApplicationController
   def guest_upload
     @upload=Upload.new
     @upload.download_count=0
-    @upload.guest_token=Upload.unique_id
-    @upload.description="Guest upload: "+@upload.guest_token
+    
     @upload.user=current_user
     @upload.save!
   end
@@ -52,7 +51,8 @@ class UploadsController < ApplicationController
   # GET /uploads/new.xml
   def new
     @upload = Upload.new
-
+    @upload.upload_type= :normal
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @upload }
@@ -81,17 +81,47 @@ class UploadsController < ApplicationController
     end
   end
 
+  # GET /uploads/1
+  # GET /uploads/1.xml
+  def show
+    @upload = Upload.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @upload }
+      format.json  { render :json => @upload }
+    end
+  end
+
   # POST /uploads
   # POST /uploads.xml
   def create
     @upload = Upload.new(params[:upload])
     @upload.download_count=0
     @upload.user=current_user
-    
+
+    if @upload.upload_type.eql? "guest"
+      @upload.guest_token=Upload.unique_id
+
+      description =params[:upload][:description]
+
+      if description.empty?
+        @upload.description="Guest upload opened by "+@upload.user.login
+      else
+        @upload.description=description
+      end
+    end
+
     respond_to do |format|
       if @upload.save
         flash[:notice]='Upload was successfully created.'
-        format.html { redirect_to(:controller=>"uploads") }
+
+        if @upload.upload_type.eql? "guest"
+          format.html { redirect_to(upload_path @upload) }
+        else
+          format.html { redirect_to(:controller=>"uploads") }
+        end
+        
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
         format.json  { render :json => @upload, :status => :created, :location => @upload }
       else
@@ -111,7 +141,13 @@ class UploadsController < ApplicationController
 
     respond_to do |format|
       if @upload.update_attributes(params[:upload])
-        format.html { redirect_to(@upload.folder) }
+        format.html { 
+          if @upload.folder
+            redirect_to(@upload.folder)
+          else
+            redirect_to(:controller=>"uploads")
+          end
+        }
         format.xml  { head :ok }
         format.json  { head :ok }
       else
